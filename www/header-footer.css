@@ -1,0 +1,159 @@
+/*Custom font credits to Julieta Ulanovsky http://www.1001freefonts.com/montserrat.font*/
+@font-face {
+    font-family: montserrat;
+    src: url(fonts/Montserrat-Regular.ttf);
+}
+/*Applied to the user's name when it is displayed next to 'logout' when they login*/
+#user {
+	color: #FFFFFF;  
+}
+
+/*Applied to Login, Logout hyperlinks*/
+#userLogin{
+	background:#222; 
+	font-family: montserrat; 
+	float: left;
+	padding: 4.5px;
+}
+
+/*Applied to entire page*/
+#wrapper {
+	min-height:100%;
+	position:relative;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/*Brisbane Wifi hotspot banner*/
+#header { 
+	background:#ededed;
+	font-family: Arial;
+	color: white;
+    height: 60px;
+    text-align: center;
+    background-color: #333;
+}
+/*Applied to Brisbane Wifi text in banner*/
+#header h1 {
+    margin: 0px;
+    padding: 10px;
+}
+
+.menu {
+    background-color: #222;
+}
+/*Applies to hyperlinks in the menu*/
+.menu a {
+	width:30em;
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: center;
+    font-size:12pt;
+    font-weight: bold;
+	font-family: Arial;
+	color: #FFFFFF;  
+    border-width: 4px;
+    text-decoration: none;
+}
+/*Changes the hyperlinks color to orange when the user moves the mouse over it*/
+.menu a:hover {
+	color: #EDB600;
+}
+/*Height: 100% and #footer position:absolute must be used 
+in order for the footer to appear at the bottom of the page*/
+html, body {
+	margin:0;
+	padding:0;
+	height:100%; 
+	/*http://www.epicure.com.au/images/default-source/Rotator/Venue/bch-big-desktop/bch-3-big-desktop.jpg?sfvrsn=2&size=2600*/
+	background: url(images/BrisbaneCity.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-color: #DEDACE;
+}
+
+#footer {
+	background:#333;
+	font-family: montserrat;
+	color: #fff;
+	width:100%; /*centers the text*/
+	position:absolute;
+	bottom:0;
+	left:0;
+}
+
+/*Registration form*/
+fieldset { 
+	color: #EDB600;
+	font-family: montserrat;
+	display: inline;
+	border: 1px solid #dcdcdc; 
+	border-radius: 10px; 
+	padding: 20px; 
+	text-align: right;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #333;
+} 
+/*Applied to Registration Form, Login Form, contact us table, ensures the fieldset does not touch the footer*/
+#Textbox, #Form  {
+	margin-top: 40px;
+	margin-bottom:100px;
+}
+/*Overrides the text-align for the registration form*/
+#Textbox {
+	text-align: left;
+}
+/*Applies to headings in terms and conditions and contact us page*/
+#Textbox h1, h2 	{
+	margin: 0px;
+	padding: 15px;
+	font-size: 20px;
+	color: #FFFFFF;
+}
+/*Applied to welcome message in the home page, login success and login failed message.*/
+#Messagebox {
+	margin-top: 150px;
+}
+
+input {  
+	font-family: montserrat;	
+	background-color: #DEDACE;  
+	border: 1px solid #bdbdbd;  
+	border-radius: 5px;  
+	margin:10px 5px;
+} 	
+/*When the user clicks on the input field*/
+input:focus { 
+	background-color: #ffffff;  
+	border: 2px solid #b1e1e4;
+}
+
+/*Registration form Error messages*/
+.error {
+	font-size: 12px;
+	color: red;
+}
+
+/*Input fields width*/
+.textfield {
+	width: 14em;
+}
+
+/*Terms and conditions hyper-link and search form*/
+a, #nearestWifi {
+	color: #FFF;
+}
+/*Contact us table*/
+th, td {
+	border: 1px solid #999;
+	padding: 0.5rem;
+}
+
+
+
