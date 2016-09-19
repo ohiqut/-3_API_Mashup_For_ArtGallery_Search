@@ -13,12 +13,11 @@
 	echo '</div>';
 	echo '<div id="header">';
 		echo '<header>';
-			echo '<h1>Brisbane Art Galleries Mash </h1> ';
+			echo '<h1>Brisbane Art Mash </h1> ';
 		echo '</header>';
 	echo '</div>';
 	echo '<menu class="menu">';
-			echo '<a href="home.php">Home</a><a href="search-form.php">Search Form</a>'.
+			echo '<a href="home.php">Home</a><a href="home.php"></a>'.
 			'<a href="terms-and-conditions.php">Terms & Conditions</a><a href="contact-us.php">Contact Us</a>';
 	echo '</menu>';
 ?>
-

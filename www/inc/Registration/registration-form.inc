@@ -8,7 +8,7 @@
 			passwordField ($errors, 'pwd2', 'Confirm Password', 'Re-enter Password');
 			radioButton ($errors, 'gender', 'Male', 'M');
 			radioButton ($errors, 'gender', 'Female', 'F');
-			checkBox ($errors, 'terms', 'I agree to Brisbane Wifi','Terms.html', 'terms and conditions.');
+			checkBox ($errors, 'terms', 'I agree to Brisbane Art Mash','Terms.html', 'terms and conditions.');
 			submitButton ('submit', 'Register');
 		?>
 	</fieldset>

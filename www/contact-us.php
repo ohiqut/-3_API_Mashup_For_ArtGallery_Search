@@ -7,8 +7,8 @@
 		echo '</head>';
 		echo '<body>';
 			echo '<div id="wrapper">';
-				session_start();
-				require '/inc/header-and-menu.inc';
+				//session_start();
+				require './inc/header-and-menu.inc';
 				echo '<fieldset id="Textbox">';
 					echo '<h1>Contact us</h1>';
 					echo '<table>';
@@ -17,7 +17,7 @@
 						echo '<tr><th>Email</th><td>ohi.ahmed@connect.qut.edu.au</td></tr>';	
 					echo '</table>';
 				echo '</fieldset>';
-				include '/inc/footer.inc';
+				include './inc/footer.inc';
 			echo '</div>'; //wrapper
 		echo '</body>';
 	echo '</html>';

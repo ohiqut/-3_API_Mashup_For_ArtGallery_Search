@@ -9,27 +9,26 @@
 
 		echo '</head>';
 		echo '<body>';
+			echo '<div id="pics"></div>';
+			echo '<div id="out"></div>';
 
 			echo '<div id="wrapper">';
 				//session_start();
-
 				require './inc/header-and-menu.inc';
-				echo '<div id="out"></div>';
 
-				echo '<div id="searcharea">';
-								echo '<label for="search">Art or Suburb name</label>';
-								echo '<p>press any key to start search!</p>';
-								echo '<input type="search" name="search" id="search" placeholder="name or info" />';
-				echo'</div>';
+				echo '<fieldset id="searcharea">';
+					echo '<label for="search">Art or Suburb name</label>';
+					echo '<p>press any key to start search!</p>';
+					echo '<input type="search" name="search" id="search" placeholder="name or info" />';
+
+					echo '<div id = "clickMe"></div>';
+			//	echo 'Welcome to Brisbane';
+				echo '</fieldset>';
 				echo '<div id="update"></div>';
-				echo '<div id="pics"></div>';
+
 						//	echo '<script src="jquery.js"></script>';
 						echo 	'<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>';
 						//echo '<script src="script.js"></script>';
-					echo '<fieldset id="Messagebox">';
-				//	echo 'Welcome to Brisbane Wi-fi!';
-					echo '</fieldset>';
-
 				include './inc/footer.inc';
 			echo '</div>'; //wrapper
 		echo '</body>';
@@ -37,34 +36,35 @@
 
 
 //Sensis API request#################################################################################################################################################################################################################
-	$json_string = file_get_contents("http://api.sensis.com.au/v1/test/search?&key=efqqs5pf32rsad37vuru9er6&query=art-gallery&location=brisbane/v1/test/search?&key=efqqs5pf32rsad37vuru9er6&query=community-hall&location=brisbane");
+	$json_string = file_get_contents("http://api.sensis.com.au/v1/test/search?&key=yvmgkv5jnmptant4ky2jahnt&query=art-gallery&location=brisbane");
 	$parsed_json = json_decode($json_string);
 	$json = json_encode($parsed_json);
-
-	function fbApi(){
-		$json_string = file_get_contents("https://graph.facebook.com/AspireGallery?fields=posts{picture}&access_token=106715286454026|4a8f7aa27529ea64e680e4e8ab7434ca");
-		$parsed_json = json_decode($json_string);
-		$json = json_encode($parsed_json);
-		return $json;
-	}
 
 ?>
 
 
 
-//Storing JSON response from php to js variable for AJAX
-<script>
 
+<script>
+//Storing JSON response from php to js variable for AJAX
 var json = <?php echo $json?>;
 
 var js = json.results;
-alert('hello');
+//alert('hello');
 //alert(js[0].primaryAddress.suburb);
-var fbJson = <?php echo fbApi()?>;
+
+
+function distance(lat1,lon1,lat2,lon2) {
+	var p1 = new google.maps.LatLng(lat1,lon1);
+	var p2 = new google.maps.LatLng(lat2, lon2);
+
+	 return (google.maps.geometry.spherical.computeDistanceBetween(p1, p2) / 1000).toFixed(2);
+}
+
 //alert (fbJson.id);
 
-function fbPics(){
-	alert (fbJson.id);
+/*function fbPics(){
+	//alert (fbJson);
 	var searchField = $('#search').val();
 	var outpic = '<table>';
 	var jp = fbJson.posts.data;
@@ -83,22 +83,37 @@ function fbPics(){
 	outpic +=' </table>';
 	$('#pics').html(outpic);
 
-}
+}*/
 
 function abc(e){
 	console.log(e);
 	console.log(e.innerHTML);
 	$('#search').val(e.innerHTML);
+	var search = $('#search').val().replace("Pty", "").replace("Ltd","").replace(/\s+/g, "");
+
+
+	$.post('fb.php', {search:search.toString()}, function(data){
+	//	$('#search').val(data);
+		$('#pics').html(data);
+	});
 }
 
 var la;
 var ln;
+var locationTitle = "Brisbane City";
 
 //AJAX Instant Search##################################################################
 $('#search').keyup(function() {
+	$('#pics').html("");
+	$('#clickMe').html("<p>*click art title below for photos and map view</p>");
+	//if($('#search').val() == ""){$('#clickMe').html("");};
+
 	search();
 });
 
+var mylat;
+var mylon;
+geoFindMe();
 
 function search(){
 
@@ -116,17 +131,19 @@ function search(){
 			//function area(){
 			ln=Number(val.primaryAddress.longitude);
 			//	alert('h');
-				la=Number(val.primaryAddress.latitude);
+				la=Number(val.primaryAddress.latitude); locationTitle= val.name;
 				//	initMap();
 		//	}
 				output += '<li>';
-				output += '<h2 onclick="initMap(la, ln); abc(this); search();fbPics();">'+ val.name+'</h2>';
+				output += '<h2 onclick="initMap(la, ln); abc(this); search();">'+ val.name+'</h2>';
 				//output += '<img src="'+ val.detailsLink +'" alt="'+ val.name +'" />';
 
 
-				if(val.primaryAddress.suburb!=""){
-					output += '<p>'+ "by : "+ val.name +'</p>';}
-				output += '<p>'+ "on : "+val.primaryAddress.suburb +'</p>';
+				if(distance(mylat,mylon,la,ln)!="NaN"){
+					output += '<p>'+ "away by : "+ distance(mylat,mylon,la,ln) +' km </p>';
+				}//else { 	output += '<p> Allow your location share to view distance </p>'; }
+				output += '<p>'+ "on : "+val.primaryAddress.addressLine+"  <b>"+val.primaryAddress.suburb +'</b></p>';
+				output += '<p>contact : '+val.primaryContacts[0].value+ "<br>"+val.primaryContacts[1].value+'</p>';
 				output += '</li>';
 			}
 		});
@@ -138,9 +155,9 @@ function search(){
 var map;
  //la  =-25.363;
  //ln = 131.044;
- la = Number(js[0].primaryAddress.latitude);
+ la = -27.4709;//Number(js[0].primaryAddress.latitude);
  //alert(la);
- ln = Number(js[0].primaryAddress.longitude);
+ ln = 153.0235;//Number(js[0].primaryAddress.longitude);
 function initMap(l,n) {
 	if(l==null||n==null){var myLatLng = {lat: la, lng: ln}
 	}else {
@@ -155,7 +172,7 @@ function initMap(l,n) {
 	var marker = new google.maps.Marker({
     position: myLatLng,
     map: map,
-    title: 'Hello World!'
+    title: locationTitle
   });
 
 }
@@ -175,20 +192,21 @@ function geoFindMe() {
   var output = document.getElementById("out");
 
   if (!navigator.geolocation){
-    output.innerHTML = "<p>Geolocation not supported by your browser</p>";
+    //output.innerHTML = "<p>Geolocation not supported by your browser</p>";
+		alert('Geolocation not supported by your browser');
     return;
   }
 
   function success(position) {
-    var latitude  = position.coords.latitude;
-    var longitude = position.coords.longitude;
+    mylat  = position.coords.latitude;
+    mylon = position.coords.longitude;
 
-    output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+    //output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
 
-    var img = new Image();
-    img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
+    //ar img = new Image();
+    //img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
 
-    output.appendChild(img);
+    //output.appendChild(img);
 
   };
 		function error() {
@@ -201,4 +219,4 @@ function geoFindMe() {
 		navigator.geolocation.getCurrentPosition(success, error);
 }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkB2eh2WaQZGxkSNHMZnnCIVCCRny9P7Q&callback=initMap"async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkB2eh2WaQZGxkSNHMZnnCIVCCRny9P7Q&libraries=geometry&callback=initMap"async defer></script>

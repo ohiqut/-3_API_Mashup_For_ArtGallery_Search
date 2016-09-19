@@ -9,32 +9,32 @@
 		//javascript validation is enabled when the page loads
 		echo '<body onload="initialise()">';
 			echo '<div id="wrapper">';
-				require '/inc/header-and-menu.inc'; 
-				require '/inc/Registration/input-field.inc';
-	
+				require './inc/header-and-menu.inc';
+				require './inc/Registration/input-field.inc';
+
 	//stores any error messages from functions in registration-validate.inc
 	$errors = array();
-	
+
 	//when the user presses the submit button, php validation is run
-	if (isset($_POST['submit'])) { 
-		require '/inc/Registration/registration-validate.inc';
+	if (isset($_POST['submit'])) {
+		/*require '/inc/Registration/registration-validate.inc';
 			validateUsername($errors, $_POST, 'username');
 			validateEmail($errors, $_POST, 'email');
 			validateDOB ($errors, $_POST, 'DOB');
 			validatePassword1 ($errors, $_POST, 'pwd1');
 			validatePassword2 ($errors, $_POST, $_POST, 'pwd1', 'pwd2');
 			validateGender ($errors, $_POST, 'gender', 'Female');
-			validateCheckbox ($errors, $_POST, 'terms');
-		
+			validateCheckbox ($errors, $_POST, 'terms');*/
+		echo'<script>alert("This is just a demo. Registration feature will be available soon!")</script>';
 		//if form contains any errors a message will appear
-		if ($errors) { 
+	/*	if ($errors) {
 			echo '<fieldset>';
 				echo 'Registration failed, please correct the following errors:';
 			echo '</fieldset>';
 				// then redisplays the form
 				require '/inc/Registration/registration-form.inc';
 		}
-		else {	
+		else {
 		//if submission successful inserts the values in the fields to the database
 			require '/inc/Database/database-connection.inc';
 			//salts the password and adds unique salt for each user
@@ -50,17 +50,16 @@
 				$stmt->execute();
 				$pdo = null;
 					echo '<fieldset id="SuccessMessage">';
-						echo 'Form submitted successfully with no errors'; 
+						echo 'Form submitted successfully with no errors';
 					echo '</fieldset>';
-		}	 
+		}*/
 	}
 	else {
-		require '/inc/Registration/registration-form.inc';
+		require './inc/Registration/registration-form.inc';
 	}
-				include '/inc/footer.inc'; 
+				include './inc/footer.inc';
 			echo '</div>'; //wrapper
 		echo '</body>';
 
 	echo '</html>';
 ?>
-

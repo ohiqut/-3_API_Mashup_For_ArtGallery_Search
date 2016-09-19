@@ -7,12 +7,12 @@
 			echo '</head>';
 		echo '<body>';
 			echo '<div id="wrapper">';
-				session_start();
-				require '/inc/header-and-menu.inc'; 
+				//session_start();
+				require './inc/header-and-menu.inc'; 
 				echo '<fieldset id="Textbox">';
-					include 'inc/terms.inc';
+					include './inc/terms.inc';
 				echo '</fieldset>';
-				include '/inc/footer.inc'; 
+				include './inc/footer.inc'; 
 			echo '</div>'; //wrapper
 		echo '</body>';
 	echo '</html>';

@@ -5,13 +5,13 @@
 }
 /*Applied to the user's name when it is displayed next to 'logout' when they login*/
 #user {
-	color: #FFFFFF;  
+	color: #FFFFFF;
 }
 
 /*Applied to Login, Logout hyperlinks*/
 #userLogin{
-	background:#222; 
-	font-family: montserrat; 
+	background:#222;
+	font-family: montserrat;
 	float: left;
 	padding: 4.5px;
 }
@@ -20,14 +20,14 @@
 #wrapper {
 	min-height:100%;
 	position:relative;
-    width: 800px;
+    width: 600px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
 }
 
-/*Brisbane Wifi hotspot banner*/
-#header { 
+/*Brisbane hotspot banner*/
+#header {
 	background:#ededed;
 	font-family: Arial;
 	color: white;
@@ -35,7 +35,7 @@
     text-align: center;
     background-color: #333;
 }
-/*Applied to Brisbane Wifi text in banner*/
+/*Applied to Brisbane text in banner*/
 #header h1 {
     margin: 0px;
     padding: 10px;
@@ -54,7 +54,7 @@
     font-size:12pt;
     font-weight: bold;
 	font-family: Arial;
-	color: #FFFFFF;  
+	color: #FFFFFF;
     border-width: 4px;
     text-decoration: none;
 }
@@ -62,14 +62,14 @@
 .menu a:hover {
 	color: #EDB600;
 }
-/*Height: 100% and #footer position:absolute must be used 
+/*Height: 100% and #footer position:absolute must be used
 in order for the footer to appear at the bottom of the page*/
 html, body {
 	margin:0;
 	padding:0;
-	height:100%; 
+	height:100%;
 	/*http://www.epicure.com.au/images/default-source/Rotator/Venue/bch-big-desktop/bch-3-big-desktop.jpg?sfvrsn=2&size=2600*/
-	background: url(images/BrisbaneCity.jpg) no-repeat center center fixed; 
+	background: url(images/BrisbaneCity.jpg) no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -88,18 +88,18 @@ html, body {
 }
 
 /*Registration form*/
-fieldset { 
+fieldset {
 	color: #EDB600;
 	font-family: montserrat;
 	display: inline;
-	border: 1px solid #dcdcdc; 
-	border-radius: 10px; 
-	padding: 20px; 
+	border: 1px solid #dcdcdc;
+	border-radius: 10px;
+	padding: 20px;
 	text-align: right;
 	margin-left: auto;
 	margin-right: auto;
 	background-color: #333;
-} 
+}
 /*Applied to Registration Form, Login Form, contact us table, ensures the fieldset does not touch the footer*/
 #Textbox, #Form  {
 	margin-top: 40px;
@@ -121,16 +121,16 @@ fieldset {
 	margin-top: 150px;
 }
 
-input {  
-	font-family: montserrat;	
-	background-color: #DEDACE;  
-	border: 1px solid #bdbdbd;  
-	border-radius: 5px;  
+input {
+	font-family: montserrat;
+	background-color: #DEDACE;
+	border: 1px solid #bdbdbd;
+	border-radius: 5px;
 	margin:10px 5px;
-} 	
+}
 /*When the user clicks on the input field*/
-input:focus { 
-	background-color: #ffffff;  
+input:focus {
+	background-color: #ffffff;
 	border: 2px solid #b1e1e4;
 }
 
@@ -154,6 +154,3 @@ th, td {
 	border: 1px solid #999;
 	padding: 0.5rem;
 }
-
-
-
